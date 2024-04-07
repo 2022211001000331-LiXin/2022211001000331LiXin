@@ -61,22 +61,24 @@
         }
     </script>
 </head>
+<%@include file="header.jsp"%>
 <body>
 <h2>New User Registration!</h2>
-<form method="post">
+<form method="post" action="register">
     <input type="text" name="username" placeholder="Username" class="input1" required/><br/>
 
     <input type="password" name="password" placeholder="Password" minlength="8" class="input1" required/><br/>
 
-    <input type="text" id="email" placeholder="Email" class="input1" value="" onblur="checkEmail()" required/>
+    <input type="text" id="email" name="email" placeholder="Email" class="input1" value="" onblur="checkEmail()" required/>
     <span id="span-email"></span><br/>
 
-    Gender<input type="radio" name="gender" value="1"/>Male
-    <input type="radio" name="gender" value="2"/>Female<br/>
+    Gender<input type="radio" name="gender" value="male"/>Male
+    <input type="radio" name="gender" value="female"/>Female<br/>
 
-    <input type="text" id="birthday" placeholder="Date of Birth(yyyy-mm-dd)" class="input1" onblur="checkBirthdate('birthday')"/><br/>
+    <input type="text" id="birthday" name="birthday" placeholder="Date of Birth(yyyy-mm-dd)" class="input1" onblur="checkBirthdate('birthday')"/><br/>
 
     <input type="submit" value="Register" class="input2"/>
 </form>
 </body>
+<%@include file="footer.jsp"%>
 </html>

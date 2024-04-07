@@ -7,6 +7,25 @@
         <servlet-name>helloworld</servlet-name>
         <servlet-class>com.lixin.week2.homework.HelloWorldServlet</servlet-class>
     </servlet>
+
+
+    <context-param>
+        <param-name>driver</param-name>
+        <param-value>com.microsoft.sqlserver.jdbc.SQLServerDriver</param-value>
+    </context-param>
+    <context-param>
+        <param-name>url</param-name>
+        <param-value>jdbc:sqlserver://localhost;databaseName=userdb;integratedSecurity=false;encrypt=true;trustServerCertificate=true;</param-value>
+    </context-param>
+    <context-param>
+        <param-name>username</param-name>
+        <param-value>sa</param-value>
+    </context-param>
+    <context-param>
+        <param-name>password</param-name>
+        <param-value>justinhmh0219</param-value>
+    </context-param>
+
     <servlet-mapping>
         <servlet-name>helloworld</servlet-name>
         <url-pattern>/hello</url-pattern>

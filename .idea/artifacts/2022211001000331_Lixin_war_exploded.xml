@@ -13,6 +13,9 @@
         <element id="directory" name="classes">
           <element id="module-output" name="2022211001000331 Lixin" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.microsoft.sqlserver:mssql-jdbc:12.6.1.jre8" />
+        </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/Lixin2022211001000331-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
