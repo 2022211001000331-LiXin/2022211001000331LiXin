@@ -42,6 +42,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //String id=request.getParameter("id");
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         String email=request.getParameter("email");
@@ -81,6 +82,7 @@ public class RegisterServlet extends HttpServlet {
             //request.getRequestDispatcher("userList.jsp").forward(request,response);
             //System.out.println("I am in RegisterServlet-->dopost()-->after forward()");//can not see this line
             response.sendRedirect("Login.jsp");
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

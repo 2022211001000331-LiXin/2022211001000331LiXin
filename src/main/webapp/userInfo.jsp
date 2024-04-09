@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.sql.ResultSet" %><%--
   Created by IntelliJ IDEA.
   User: 86150
   Date: 2024/4/7
@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="header.jsp"%>
+
 <h1>User Info</h1>
 <table>
     <tr>

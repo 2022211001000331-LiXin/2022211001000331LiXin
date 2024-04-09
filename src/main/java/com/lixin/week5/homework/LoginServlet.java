@@ -42,16 +42,19 @@ public class LoginServlet extends HttpServlet {
         PrintWriter out= response.getWriter();
         String username=request.getParameter("username");
         String password=request.getParameter("password");
+       // String email=request.getParameter("email");
+        //String gender=request.getParameter("gender");
+        //String birthdate=request.getParameter("birthday");
 
         try{
             Statement st=con.createStatement();
-            String sql="insert into usertable(username,password)"+
-                    "values('"+username+"','"+password+"')";
-            System.out.println("sql"+sql);
-            int n=st.executeUpdate(sql);
-            System.out.println("n-->"+n);
+           // String sql="insert into usertable(username,password,email,gender,birthdate)"+
+                    //" values('"+username+"','"+password+"','"+email+"','"+gender+"','"+birthdate+"')";
+            //System.out.println("sql"+sql);
+            //int n=st.executeUpdate(sql);
+            //System.out.println("n-->"+n);
 
-            sql="select username,password,email,gender,birthdate from usertable";
+            String sql="select username,password,email,gender,birthdate from usertable where username='"+username+"' and password='"+password+"'";
             ResultSet rs=st.executeQuery(sql);
 
             if(rs.next()){
