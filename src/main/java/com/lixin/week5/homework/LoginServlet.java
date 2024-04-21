@@ -1,5 +1,8 @@
 package com.lixin.week5.homework;
 
+import com.lixin.dao.UserDao;
+import com.lixin.model.User;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -33,7 +36,9 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
+        //doPost(request, response);
+
+        request.getRequestDispatcher("WEB-INF/views/Login.jsp").forward(request,response);
     }
 
     @Override
@@ -46,7 +51,62 @@ public class LoginServlet extends HttpServlet {
         //String gender=request.getParameter("gender");
         //String birthdate=request.getParameter("birthday");
 
-        try{
+
+        //write mvc code
+        //use model and dao
+        UserDao userDao=new UserDao();
+        try {
+            User user=userDao.findByUsernamePassword(con,username,password);//this method use for login
+            if(user!=null){//login success
+
+                //create cookies - 3 steps
+                //step 1 - create
+                //Cookie c=new Cookie("sessionid",""+user.getId());
+                //step 2 - set max age
+                //c.setMaxAge(5*60);//second秒
+                //step 3 - send back to client
+                //response.addCookie(c);
+
+                //add code for remember me
+                String rememberMe=request.getParameter("rememberMe");
+                if(rememberMe!=null && rememberMe.equals("1")){
+                    //create 3 cookies
+                    Cookie usernameCookie=new Cookie("cUsername",user.getUsername());
+                    Cookie passwordCookie=new Cookie("cPassword",user.getPassword());
+                    Cookie rememberMeCookie=new Cookie("cRememberMe",rememberMe);
+                    //set age
+                    usernameCookie.setMaxAge(5);
+                    passwordCookie.setMaxAge(5);
+                    rememberMeCookie.setMaxAge(5);
+                    //add cookies into response
+                    response.addCookie(usernameCookie);
+                    response.addCookie(passwordCookie);
+                    response.addCookie(rememberMeCookie);
+                }
+
+                //create session -- week 8
+                HttpSession session=request.getSession();
+                System.out.println("Session id-->"+session.getId());
+                //set age 20 min
+                session.setMaxInactiveInterval(60*20);//second秒
+                //kill the session right now
+                //session.invalidate();//use for logout
+
+
+                session.setAttribute("user",user);//get user info in jsp -- 'request.setAttribute()' is just for one jsp -- session.setAttribute() for many jsp
+                request.getRequestDispatcher("WEB-INF/views/userInfo.jsp").forward(request,response);
+            }else{
+                request.setAttribute("massage","username or password error!!!");
+                request.getRequestDispatcher("WEB-INF/views/Login.jsp").forward(request,response);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
+
+
+        /*try{
             Statement st=con.createStatement();
            // String sql="insert into usertable(username,password,email,gender,birthdate)"+
                     //" values('"+username+"','"+password+"','"+email+"','"+gender+"','"+birthdate+"')";
@@ -80,6 +140,6 @@ public class LoginServlet extends HttpServlet {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
+*/
     }
 }

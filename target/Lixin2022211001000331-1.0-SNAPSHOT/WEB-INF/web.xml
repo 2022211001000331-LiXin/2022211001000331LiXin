@@ -8,6 +8,10 @@
         <servlet-class>com.lixin.week2.homework.HelloWorldServlet</servlet-class>
     </servlet>
 
+    <welcome-file-list>
+        <welcome-file>home</welcome-file><!--home means go to HomeServlet-->
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
 
     <context-param>
         <param-name>driver</param-name>
