@@ -13,6 +13,9 @@ public class HelloWorldServlet extends HttpServlet {
         writer.println("Name:Li Xin");
         writer.println("ID:2022211001000331");
         writer.println("Date and Time:"+new Date());
+
+        System.out.println("i am in HelloServlet--inside doget()");
+        //go back to HelloFilter
     }
     public void doPost(HttpServletRequest request,HttpServletResponse response){
 

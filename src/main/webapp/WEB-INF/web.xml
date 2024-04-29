@@ -8,6 +8,11 @@
         <servlet-class>com.lixin.week2.homework.HelloWorldServlet</servlet-class>
     </servlet>
 
+    <servlet-mapping>
+        <servlet-name>helloworld</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+
     <welcome-file-list>
         <welcome-file>home</welcome-file><!--home means go to HomeServlet-->
         <welcome-file>index.html</welcome-file>
@@ -30,8 +35,31 @@
         <param-value>justinhmh0219</param-value>
     </context-param>
 
-    <servlet-mapping>
-        <servlet-name>helloworld</servlet-name>
+
+    <filter>
+        <filter-name>HelloFilter</filter-name>
+        <filter-class>com.lixin.filter.HelloFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HelloFilter</filter-name>
         <url-pattern>/hello</url-pattern>
-    </servlet-mapping>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>LoggerFilter</filter-name>
+        <filter-class>com.lixin.filter.LoggerFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoggerFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>com.lixin.filter.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
 </web-app>
